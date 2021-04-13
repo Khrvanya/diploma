@@ -6,7 +6,7 @@ import numpy as np
 from seaborn import heatmap
 import matplotlib.pyplot as plt
 
-DATA_PATH = os.path.join(os.getcwd(), 'data')
+DATA_PATH = os.path.join(os.getcwd())
 
 
 def get_parser():
@@ -60,21 +60,25 @@ def find_min_weights(pixel_difference: np.ndarray, alpha: float, d_max=10) -> np
     left_len, right1_len, right2_len = pixel_difference.shape
 
     loss_values = np.full((left_len, right1_len, d_max), np.inf)
-    shift_values = np.ones((left_len, right1_len - 1, d_max), dtype=np.int64)
+    shift_values = np.zeros((left_len, right1_len - 1, d_max), dtype=np.int64)
     loss_values[:, 0, :np.min([d_max, right2_len])] = pixel_difference[:, 0, :d_max]  
 
     for idx in range(1, right1_len):
-        for d_idx in range(d_max):
+        
+        pix_diff = pixel_difference[:, idx, idx:idx+d_max, np.newaxis]  
+        prev_loss = loss_values[:, idx-1, np.newaxis, :]
 
-            pix_diff = pixel_difference[:, idx, idx + d_idx:idx + d_idx + d_max]
-            d_diff = np.abs(d_idx - np.arange(pix_diff.shape[1]))
-            prev_loss = loss_values[:, idx-1, :pix_diff.shape[1]]
+        pixels_curr = pix_diff.shape[1]
+        pixels_prev = prev_loss.shape[2]   
 
-            new_loss = pix_diff + alpha * d_diff + prev_loss
+        d_local_diff = np.abs(np.arange(pixels_prev)[np.newaxis, :] - np.arange(pixels_curr)[:, np.newaxis])
+        d_diff = d_local_diff[np.newaxis, :, :]
 
-            if pix_diff.shape[1]:
-                loss_values[:, idx, d_idx] = np.min(new_loss, axis=1)
-                shift_values[:, idx - 1, d_idx] = np.argmin(new_loss, axis=1) 
+        new_loss = pix_diff + prev_loss + alpha * d_diff
+
+        if pixels_curr:
+            loss_values[:, idx, :pixels_curr] = np.min(new_loss, axis=2)
+            shift_values[:, idx - 1, :pixels_curr] = np.argmin(new_loss, axis=2) 
             
     return shift_values, np.argmin(loss_values[:, -1, :], axis=1)
 
