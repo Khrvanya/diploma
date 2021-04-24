@@ -1,0 +1,12 @@
+\select@language {ukrainian}
+\contentsline {chapter}{\IeC {\CYRV }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyru }\IeC {\cyrp }}{6}{chapter*.5}
+\contentsline {chapter}{\numberline {1}\IeC {\CYRT }\IeC {\cyre }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyri }\IeC {\cyrch }\IeC {\cyrn }\IeC {\cyrii } \IeC {\cyrv }\IeC {\cyrii }\IeC {\cyrd }\IeC {\cyro }\IeC {\cyrm }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyrii }}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}\IeC {\CYRP }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrz }\IeC {\cyra }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyrii }}{7}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}\IeC {\CYRP }\IeC {\cyro }\IeC {\cyrp }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyrn }\IeC {\cyrii } \IeC {\cyrr }\IeC {\cyro }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyri }}{7}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}\IeC {\CYRV }\IeC {\cyri }\IeC {\cyrz }\IeC {\cyrn }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrya }}{7}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}\IeC {\CYRR }\IeC {\cyro }\IeC {\cyrz }\IeC {\cyrv }'\IeC {\cyrya }\IeC {\cyrz }\IeC {\cyro }\IeC {\cyrk }}{7}{section.1.2}
+\contentsline {chapter}{\numberline {2}\IeC {\CYRP }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyri }\IeC {\cyrch }\IeC {\cyrn }\IeC {\cyrii } \IeC {\cyrr }\IeC {\cyre }\IeC {\cyrz }\IeC {\cyru }\IeC {\cyrl }\IeC {\cyrsftsn }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyri }}{8}{chapter.2}
+\contentsline {chapter}{\numberline {3}\IeC {\CYRO }\IeC {\cyrh }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrn }\IeC {\cyra } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyrii }}{9}{chapter.3}
+\contentsline {chapter}{\IeC {\CYRV }\IeC {\cyri }\IeC {\cyrs }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrk }\IeC {\cyri }}{10}{chapter*.6}
+\contentsline {chapter}{\IeC {\CYRP }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrl }\IeC {\cyrii }\IeC {\cyrk } \IeC {\cyrp }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyri }\IeC {\cyrl }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrsftsn }}{11}{section*.7}
+\contentsfinish 
