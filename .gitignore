@@ -1,8 +1,15 @@
+# My stuff
+stuff/
+
+# LFS
+.gitattributes
+
 # PyCharm stuff
 .idea/
 
 # Virtual environment 
 venv/
+venv_38/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
