@@ -178,8 +178,8 @@ def opencv_rectification(img_l, img_r, fundamental, pts_l, pts_r, show=False) ->
     img_r_rect = cv.warpPerspective(img_r, H2, (w2, h2))
 
     if show:
-        imshow(img_l_rect)  #, 'data/mess/left_opencv.png')
-        imshow(img_r_rect)  #, 'data/mess/right_opencv.png')
+        imshow(img_l_rect)  # , 'data/mess/left_opencv.png')
+        imshow(img_r_rect)  # , 'data/mess/right_opencv.png')
 
     return H1, H2
 
@@ -324,14 +324,14 @@ def custom_rectification(img_l, img_r, fundamental, pts_l, pts_r, show=False) ->
     img_r_rect = cv.warpPerspective(img_r, Rr, (w2, h2))
 
     if show:
-        imshow(img_l_rect)  #, 'data/mess/left_custom.png')
-        imshow(img_r_rect)  #, 'data/mess/right_custom.png')
+        imshow(img_l_rect)  # , 'data/mess/left_custom.png')
+        imshow(img_r_rect)  # , 'data/mess/right_custom.png')
 
     return Rl, Rr
 
 
 if __name__ == '__main__':
-    path_l, path_r = 'data/mess/left.png', 'data/mess/right.png'
+    path_l, path_r = 'data/mouse/right.png', 'data/mouse/left.png'
     image_l, image_r = cv.imread(path_l, cv.IMREAD_COLOR), cv.imread(path_r, cv.IMREAD_COLOR)
 
     F, points_l, points_r = get_fundamental(image_l, image_r, return_points=True)
@@ -341,5 +341,5 @@ if __name__ == '__main__':
     L_cv, R_cv = opencv_rectification(im_l, im_r, F, points_l, points_r, True)
     L, R = custom_rectification(im_l, im_r, F, points_l, points_r, True)
 
-    print(f"Rl mse error: {np.mean((L_cv / L_cv[2,2] - L / L[2,2]) ** 2)},",
-          f"\nRr mse error: {np.mean((R_cv / R_cv[2,2] - R / R[2,2]) ** 2)}")
+    print(f"Rl mse error: {np.mean((L_cv / L_cv[2, 2] - L / L[2, 2]) ** 2)},",
+          f"\nRr mse error: {np.mean((R_cv / R_cv[2, 2] - R / R[2, 2]) ** 2)}")
