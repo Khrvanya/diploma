@@ -12,4 +12,20 @@
 Knuth,~D.E. The {\TeX}book~/ D.E.~Knuth~// Computers \& typesetting. ---
 \newblock Addison-Wesley Publishing Company, 1984.
 
+\bibitem{DBLP:journals/ijcv/Hartley99}
+\selectlanguageifdefined{english}
+Hartley,~Richard~I. Theory and Practice of Projective Rectification~/
+  Richard~I.~Hartley~// \BibEmph{Int. J. Comput. Vis.} ---
+\newblock 1999. ---
+\newblock Vol.~35, no.~2. ---
+\newblock Pp.~115--127.
+
+\bibitem{Mallon2005ProjectiveRF}
+\selectlanguageifdefined{english}
+Mallon,~John. Projective rectification from the fundamental matrix~/
+  John~Mallon, Paul~F.~Whelan~// \BibEmph{Image Vis. Comput.} ---
+\newblock 2005. ---
+\newblock Vol.~23. ---
+\newblock Pp.~643--650.
+
 \end{thebibliography}
