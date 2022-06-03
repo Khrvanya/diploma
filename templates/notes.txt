@@ -1,0 +1,63 @@
+{x'}^T \cdot F \cdot x = 0 - не розумію
+
+
+\subsection{Підготовчі кроки}
+
+Вона має властивість показувати залежність між двома відповідними
+точками різних зображень
+\begin{equation}
+	{x'}^T \cdot F \cdot x = 0.
+\end{equation}
+
+\begin{equation}
+	{F}^T \cdot {e'}_{n} = 0.
+\end{equation}
+
+
+\subsection{Ректифікація лівого зображення}
+
+\begin{gather}
+\exists H \in \mathbb{R}^{3\times3} : F = {[e']}_\times \cdot H 
+\notag\\
+\exists c \in \mathbb{R} \: \backslash \{0\} : 
+F = {[e']}_\times \cdot (c \cdot {[e']}_\times \cdot F) 
+\notag\\
+rank H = 3, \:\:\: rank (c \cdot {[e']}_\times \cdot F) = 2
+\end{gather}
+
+
+Але взявши за матрицю $H' = {[e']}_\times \cdot F$, у нас з'являєтся
+нова проблема - $rank (H') = 2$, тоді як $H'$ повинна бути 
+невиродженою (чого?)
+
+
+\subsection{Ректифікація лівого зображення}
+
+Та шукану $R_l$
+\begin{equation}
+    R_l = A \cdot M' = 
+    \begin{bmatrix}
+    [a \ b \ c] \cdot M'\\
+    M_y\\
+    M_z\
+    \end{bmatrix}
+\end{equation}
+
+Тепер вирішимо оптимізаційну задачу
+
+\begin{gather}
+    \sum_{\left \langle x, x' \right \rangle} 
+    {\begin{pmatrix}
+    \frac{{(R_l \cdot x)}_x}{{(R_l \cdot x)}_z} - 
+    \frac{{(R_r \cdot x')}_x}{{(R_r \cdot x')}_z}
+    \end{pmatrix}}^2 
+    \xrightarrow[a,b,c \ \in \mathbb{R}]{} min
+    \notag\\
+    \notag\\
+    \sum_{\left \langle x, x' \right \rangle} 
+    {\begin{pmatrix}
+    [a \ b \ c] \cdot \frac{(M' \cdot x)}{{(M' \cdot x)}_z} 
+    - \frac{{(R_r \cdot x')}_x}{{(R_r \cdot x')}_z}
+    \end{pmatrix}}^2 
+    \xrightarrow[a,b,c \ \in \mathbb{R}]{} min
+\end{gather}

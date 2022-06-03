@@ -191,15 +191,15 @@ def epipole_point(fundamental: np.array, image_position: str, normalize: str = '
     """
     Returns epipole from fundamental using svd
     :param fundamental: fundamental matrix
-    :param image_position: ['left', 'right']
+    :param image_position: ['l', 'r']
     :param normalize: ['No', 'Euclid', 'Z']
     :return: one of the epipoles
     """
 
-    if image_position == 'right':
+    if image_position == 'r':
         matrix = fundamental.T
     else:
-        matrix = fundamental  # image_position == 'left'
+        matrix = fundamental  # image_position == 'l'
 
     epi = null_space(matrix)
 
@@ -292,8 +292,7 @@ def transform_left(pts_l, pts_r, R_right, fundamental, epi) -> np.array:
     M = R_right @ epi_x @ fundamental
 
     M_orto = M.copy()
-    cross_23 = np.cross(M[1], M[2])
-    M_orto[0] = cross_23 / np.sqrt(cross_23.dot(cross_23))
+    M_orto[0] = np.cross(M[1], M[2])
 
     A = minimize_abc(M_orto, pts_l, R_right, pts_r)
     R_left = A @ M_orto
@@ -316,7 +315,8 @@ def custom_rectification(img_l, img_r, fundamental, pts_l, pts_r, show=False) ->
     h1, w1, _ = img_l.shape
     h2, w2, _ = img_r.shape
 
-    epipole = epipole_point(fundamental, 'right')
+    epipole = epipole_point(fundamental, 'r')
+    # почему в Rr епиполярная точка транслирована, а в Rl она обычная
     Rr = transform_right(epipole, (w2, h2))  # translate is the same on Rl
     Rl = transform_left(pts_l, pts_r, Rr, fundamental, epipole)
 
@@ -338,8 +338,8 @@ if __name__ == '__main__':
 
     im_l, im_r = draw_epilines(image_l, image_r, F, points_l[:100], points_r[:100])
 
-    L_cv, R_cv = opencv_rectification(im_l, im_r, F, points_l, points_r, True)
-    L, R = custom_rectification(im_l, im_r, F, points_l, points_r, True)
+    L_cv, R_cv = opencv_rectification(im_l, im_r, F, points_l, points_r)
+    L, R = custom_rectification(im_l, im_r, F, points_l, points_r)
 
     print(f"Rl mse error: {np.mean((L_cv / L_cv[2, 2] - L / L[2, 2]) ** 2)},",
           f"\nRr mse error: {np.mean((R_cv / R_cv[2, 2] - R / R[2, 2]) ** 2)}")
