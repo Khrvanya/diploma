@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \def\selectlanguageifdefined#1{
 \expandafter\ifx\csname date#1\endcsname\relax
 \else\language\csname l@#1\endcsname\fi}
@@ -7,10 +7,15 @@
 \ifx\undefined\BibAnnote\long\def\BibAnnote#1{}\else\fi
 \ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
 
-\bibitem{Knuth:1984}
+\bibitem{LUONG1996193}
 \selectlanguageifdefined{english}
-Knuth,~D.E. The {\TeX}book~/ D.E.~Knuth~// Computers \& typesetting. ---
-\newblock Addison-Wesley Publishing Company, 1984.
+Luong,~Q.-T. Canonical Representations for the Geometries of Multiple
+  Projective Views~/ Q.-T.~Luong, T.~Viéville~// \BibEmph{Computer Vision and
+  Image Understanding}. ---
+\newblock 1996. ---
+\newblock Vol.~64, no.~2. ---
+\newblock Pp.~193--229. \BibUrl{
+  https://www.sciencedirect.com/science/article/pii/S1077314296900557}.
 
 \bibitem{DBLP:journals/ijcv/Hartley99}
 \selectlanguageifdefined{english}
@@ -27,5 +32,69 @@ Mallon,~John. Projective rectification from the fundamental matrix~/
 \newblock 2005. ---
 \newblock Vol.~23. ---
 \newblock Pp.~643--650.
+
+\bibitem{10.1023/B:VISI.0000029664.99615.94}
+\selectlanguageifdefined{english}
+Lowe,~David~G. Distinctive Image Features from Scale-Invariant Keypoints~/
+  David~G.~Lowe~// \BibEmph{Int. J. Comput. Vision}. ---
+\newblock 2004. --- nov. ---
+\newblock Vol.~60, no.~2. ---
+\newblock P.~91–110. \BibUrl{
+  https://doi.org/10.1023/B:VISI.0000029664.99615.94}.
+
+\bibitem{Bay2006SURFSU}
+\selectlanguageifdefined{english}
+Bay,~Herbert. SURF: Speeded Up Robust Features~/ Herbert~Bay, Tinne~Tuytelaars,
+  Luc~Van~Gool~// ECCV. ---
+\newblock 2006.
+
+\bibitem{6126544}
+\selectlanguageifdefined{english}
+ORB: An efficient alternative to SIFT or SURF~/ Ethan~Rublee, Vincent~Rabaud,
+  Kurt~Konolige, Gary~Bradski~// 2011 International Conference on Computer
+  Vision. ---
+\newblock 2011. --- Nov. ---
+\newblock Pp.~2564--2571.
+
+\bibitem{Muja09fastapproximate}
+\selectlanguageifdefined{english}
+Muja,~Marius. Fast approximate nearest neighbors with automatic algorithm
+  configuration~/ Marius~Muja, David~G.~Lowe~// In VISAPP International
+  Conference on Computer Vision Theory and Applications. ---
+\newblock 2009. ---
+\newblock Pp.~331--340.
+
+\bibitem{Hartley94projectivereconstruction}
+\selectlanguageifdefined{english}
+Hartley,~Richard~I. Projective Reconstruction and Invariants from Multiple
+  Images. ---
+\newblock 1994.
+
+\bibitem{LonguetHiggins1981ACA}
+\selectlanguageifdefined{english}
+Longuet-Higgins,~Hugh~Christopher. A computer algorithm for reconstructing a
+  scene from two projections~/ Hugh~Christopher~Longuet-Higgins~//
+  \BibEmph{Nature}. ---
+\newblock 1981. ---
+\newblock Vol. 293. ---
+\newblock Pp.~133--135.
+
+\bibitem{10.1145/358669.358692}
+\selectlanguageifdefined{english}
+Fischler,~Martin~A. Random Sample Consensus: A Paradigm for Model Fitting with
+  Applications to Image Analysis and Automated Cartography~/
+  Martin~A.~Fischler, Robert~C.~Bolles~// \BibEmph{Commun. ACM}. ---
+\newblock 1981. --- jun. ---
+\newblock Vol.~24, no.~6. ---
+\newblock P.~381–395. \BibUrl{ https://doi.org/10.1145/358669.358692}.
+
+\bibitem{1102314}
+\selectlanguageifdefined{english}
+Klema,~V. The singular value decomposition: Its computation and some
+  applications~/ V.~Klema, A.~Laub~// \BibEmph{IEEE Transactions on Automatic
+  Control}. ---
+\newblock 1980. ---
+\newblock Vol.~25, no.~2. ---
+\newblock Pp.~164--176.
 
 \end{thebibliography}

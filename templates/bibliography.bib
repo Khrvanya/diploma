@@ -9,13 +9,13 @@
 }
 
 @article{DBLP:journals/ijcv/Hartley99,
-  author    = {Richard I. Hartley},
-  title     = {Theory and Practice of Projective Rectification},
-  journal   = {Int. J. Comput. Vis.},
-  volume    = {35},
-  number    = {2},
-  pages     = {115--127},
-  year      = {1999}
+  author={Richard I. Hartley},
+  title={Theory and Practice of Projective Rectification},
+  journal={Int. J. Comput. Vis.},
+  volume={35},
+  number={2},
+  pages={115--127},
+  year={1999}
 }
 
 @article{Mallon2005ProjectiveRF,
@@ -26,3 +26,111 @@
   volume={23},
   pages={643-650}
 }
+
+@article{LUONG1996193,
+title = {Canonical Representations for the Geometries of Multiple Projective Views},
+journal = {Computer Vision and Image Understanding},
+volume = {64},
+number = {2},
+pages = {193-229},
+year = {1996},
+issn = {1077-3142},
+doi = {https://doi.org/10.1006/cviu.1996.0055},
+url = {https://www.sciencedirect.com/science/article/pii/S1077314296900557},
+author = {Q.-T. Luong and T. Viéville},
+abstract = {This work is in the context of motion and stereo analysis. It presents a new unified representation which will be useful when dealing with multiple views in the case of uncalibrated cameras. Several levels of information might be considered, depending on the availability of information. Among other things, an algebraic description of the epipolar geometry ofNviews is introduced, as well as a framework for camera self-calibration, calibration updating, and structure from motion in an image sequence taken by a camera which is zooming and moving at the same time. We show how a special decomposition of a set of two or three general projection matrices, calledcanonical, enables us to build geometric descriptions for a system of cameras which are invariant with respect to a given group of transformations. These representations are minimal and capture completely the properties of each level of description considered, Euclidean (in the context of calibration, and in the context of structure from motion, which we distinguish clearly), affine, and projective, that we also relate to each other. In the last case, a new decomposition of the well-knownfundamental matrixis obtained. Dependencies, which appear when three or more views are available, are studied in the context of the canonic decomposition, and new composition formulas are established. The theory is illustrated by tutorial examples with real images.}
+}
+
+@article{10.1023/B:VISI.0000029664.99615.94,
+author = {Lowe, David G.},
+title = {Distinctive Image Features from Scale-Invariant Keypoints},
+year = {2004},
+issue_date = {November 2004},
+publisher = {Kluwer Academic Publishers},
+address = {USA},
+volume = {60},
+number = {2},
+issn = {0920-5691},
+url = {https://doi.org/10.1023/B:VISI.0000029664.99615.94},
+doi = {10.1023/B:VISI.0000029664.99615.94},
+abstract = {This paper presents a method for extracting distinctive invariant features from images that can be used to perform reliable matching between different views of an object or scene. The features are invariant to image scale and rotation, and are shown to provide robust matching across a substantial range of affine distortion, change in 3D viewpoint, addition of noise, and change in illumination. The features are highly distinctive, in the sense that a single feature can be correctly matched with high probability against a large database of features from many images. This paper also describes an approach to using these features for object recognition. The recognition proceeds by matching individual features to a database of features from known objects using a fast nearest-neighbor algorithm, followed by a Hough transform to identify clusters belonging to a single object, and finally performing verification through least-squares solution for consistent pose parameters. This approach to recognition can robustly identify objects among clutter and occlusion while achieving near real-time performance.},
+journal = {Int. J. Comput. Vision},
+month = {nov},
+pages = {91–110},
+numpages = {20},
+keywords = {scale invariance, image matching, invariant features, object recognition}
+}
+
+@inproceedings{Bay2006SURFSU,
+  title={SURF: Speeded Up Robust Features},
+  author={Herbert Bay and Tinne Tuytelaars and Luc Van Gool},
+  booktitle={ECCV},
+  year={2006}
+}
+
+@INPROCEEDINGS{6126544,
+  author={Rublee, Ethan and Rabaud, Vincent and Konolige, Kurt and Bradski, Gary},
+  booktitle={2011 International Conference on Computer Vision}, 
+  title={ORB: An efficient alternative to SIFT or SURF}, 
+  year={2011},
+  volume={},
+  number={},
+  pages={2564-2571},
+  abstract={Feature matching is at the base of many computer vision problems, such as object recognition or structure from motion. Current methods rely on costly descriptors for detection and matching. In this paper, we propose a very fast binary descriptor based on BRIEF, called ORB, which is rotation invariant and resistant to noise. We demonstrate through experiments how ORB is at two orders of magnitude faster than SIFT, while performing as well in many situations. The efficiency is tested on several real-world applications, including object detection and patch-tracking on a smart phone.},
+  keywords={},
+  doi={10.1109/ICCV.2011.6126544},
+  ISSN={2380-7504},
+  month={Nov},}
+
+@INPROCEEDINGS{Muja09fastapproximate,
+  author = {Marius Muja and David G. Lowe},
+  title = {Fast approximate nearest neighbors with automatic algorithm configuration},
+  booktitle = {In VISAPP International Conference on Computer Vision Theory and Applications},
+  year = {2009},
+  pages = {331--340}
+}
+
+@article{LonguetHiggins1981ACA,
+  title={A computer algorithm for reconstructing a scene from two projections},
+  author={Hugh Christopher Longuet-Higgins},
+  journal={Nature},
+  year={1981},
+  volume={293},
+  pages={133-135}
+}
+
+@article{10.1145/358669.358692,
+  author = {Fischler, Martin A. and Bolles, Robert C.},
+  title = {Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography},
+  year = {1981},
+  issue_date = {June 1981},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  volume = {24},
+  number = {6},
+  issn = {0001-0782},
+  url = {https://doi.org/10.1145/358669.358692},
+  doi = {10.1145/358669.358692},
+  abstract = {A new paradigm, Random Sample Consensus (RANSAC), for fitting a model to experimental data is introduced. RANSAC is capable of interpreting/smoothing data containing a significant percentage of gross errors, and is thus ideally suited for applications in automated image analysis where interpretation is based on the data provided by error-prone feature detectors. A major portion of this paper describes the application of RANSAC to the Location Determination Problem (LDP): Given an image depicting a set of landmarks with known locations, determine that point in space from which the image was obtained. In response to a RANSAC requirement, new results are derived on the minimum number of landmarks needed to obtain a solution, and algorithms are presented for computing these minimum-landmark solutions in closed form. These results provide the basis for an automatic system that can solve the LDP under difficult viewing},
+  journal = {Commun. ACM},
+  month = {jun},
+  pages = {381–395},
+  numpages = {15},
+  keywords = {camera calibration, image matching, automated cartography, scene analysis, location determination, model fitting}
+}
+
+@MISC{Hartley94projectivereconstruction,
+    author = {Richard I. Hartley},
+    title = {Projective Reconstruction and Invariants from Multiple Images},
+    year = {1994}
+}
+
+@ARTICLE{1102314,
+  author={Klema, V. and Laub, A.},
+  journal={IEEE Transactions on Automatic Control}, 
+  title={The singular value decomposition: Its computation and some applications}, 
+  year={1980},
+  volume={25},
+  number={2},
+  pages={164-176},
+  doi={10.1109/TAC.1980.1102314}}

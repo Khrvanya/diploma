@@ -237,8 +237,9 @@ def transform_right(epi: np.array, translation_coords: tuple = None) -> np.array
     if translation_coords:
         cx, cy = np.array(translation_coords) // 2
         T = np.array([[1, 0, -cx], [0, 1, -cy], [0, 0, 1]])
+        if epi[2] < 0:
+            T = -T  # mirror
         epi = T @ epi
-    # mirror = np.array([[-1, 0, cx*2], [0, -1, cy*2], [0, 0, 1]])
 
     d = np.sqrt(epi[0] ** 2 + epi[1] ** 2)
     R = np.array([[epi[0] / d, epi[1] / d, 0], [-epi[1] / d, epi[0] / d, 0], [0, 0, 1]])
@@ -251,32 +252,43 @@ def transform_right(epi: np.array, translation_coords: tuple = None) -> np.array
     return R_right
 
 
-def minimize_abc(left, pts_l, right, pts_r) -> np.array:
+# ----------------------------
+
+
+def minimize_abc(left, pts_l, right, pts_r, l_z_norm=None, r_z_norm=None) -> np.array:
     """
     Minimize least squares for x cood: left*pts_l @ result = right*pts_r
     :param left: Left points matrix
     :param pts_l: key points of the left image
     :param right: Right points matrix
     :param pts_r: key points of the right image
-    :return: minimized transformation matrix
+    :param l_z_norm: Left normalization points matrix
+    :param r_z_norm: Right normalization points matrix
+    :return: minimized transformation vector
     """
+
+    if l_z_norm is None:
+        l_z_norm = left
+    if r_z_norm is None:
+        r_z_norm = right
 
     pts_l_3d = np.hstack([pts_l, np.ones((pts_l.shape[0], 1))])
     pts_r_3d = np.hstack([pts_r, np.ones((pts_r.shape[0], 1))])
 
     a = (left @ pts_l_3d.T)
-    aT_norm = (a / a[2]).T
-    b = (right @ pts_r_3d.T)
-    bx_norm = b[0] / b[2]
-    x = np.linalg.lstsq(aT_norm, bx_norm, rcond=None)[0]
+    a_z = (l_z_norm @ pts_l_3d.T)[2]
+    a_norm = a / a_z
 
-    A = np.eye(3)
-    A[0] = x
+    b_x = (right @ pts_r_3d.T)[0]
+    b_z = (r_z_norm @ pts_r_3d.T)[2]
+    b_x_norm = b_x / b_z
 
-    return A
+    x_abc = np.linalg.lstsq(a_norm.T, b_x_norm, rcond=None)[0]
+
+    return x_abc
 
 
-def transform_left(pts_l, pts_r, R_right, fundamental, epi) -> np.array:
+def transform_left_nech(pts_l, pts_r, R_right, fundamental, epi) -> np.array:
     """
     Left image rectification matrix
     # !if translate was used on R_right, then R_left would be translated the same!
@@ -294,22 +306,45 @@ def transform_left(pts_l, pts_r, R_right, fundamental, epi) -> np.array:
     M_orto = M.copy()
     M_orto[0] = np.cross(M[1], M[2])
 
-    A = minimize_abc(M_orto, pts_l, R_right, pts_r)
-    R_left = A @ M_orto
+    A_x = minimize_abc(M_orto, pts_l, R_right, pts_r)
+    R_left = M.copy()
+    R_left[0] = A_x @ M_orto
 
     return R_left
 
 
-def custom_rectification(img_l, img_r, fundamental, pts_l, pts_r, show=False) -> tuple:
+def transform_left_khrop(pts_l, pts_r, R_right, fundamental, epi) -> np.array:
+    """
+    Left image rectification matrix
+    # !if translate was used on R_right, then R_left would be translated the same!
+    :param pts_l: key points of the left image
+    :param pts_r: key points of the right image
+    :param R_right: right image rectification matrix
+    :param fundamental: fundamental matrix
+    :param epi: epipole to the image
+    :return: left transformation matrix
+    """
+
+    epi_x = get_cross_matrix(epi)
+    M = R_right @ epi_x @ fundamental
+
+    R_left = M.copy()
+    R_left[0] = minimize_abc(np.eye(3), pts_l, R_right, pts_r, M)
+
+    return R_left
+
+
+def custom_rectification(rtype, img_l, img_r, fundamental, pts_l, pts_r, show=False) -> tuple:
     """
     Rectifies left and right images using Hartley method in opencv
+    :param rtype: 'nech' or 'khrop'
     :param img_l: left image
     :param img_r: right image
     :param fundamental: fundamental matrix
     :param pts_l: points on the left image
     :param pts_r: points on the right image
     :param show: show rectified images or not
-    :return: two matrices for rectification
+    :return: two matrices for 3rectification
     """
 
     h1, w1, _ = img_l.shape
@@ -318,7 +353,12 @@ def custom_rectification(img_l, img_r, fundamental, pts_l, pts_r, show=False) ->
     epipole = epipole_point(fundamental, 'r')
     # почему в Rr епиполярная точка транслирована, а в Rl она обычная
     Rr = transform_right(epipole, (w2, h2))  # translate is the same on Rl
-    Rl = transform_left(pts_l, pts_r, Rr, fundamental, epipole)
+    if rtype == 'khrop':
+        Rl = transform_left_khrop(pts_l, pts_r, Rr, fundamental, epipole)
+    elif rtype == 'nech':
+        Rl = transform_left_nech(pts_l, pts_r, Rr, fundamental, epipole)
+    else:
+        assert False, "False rtype"
 
     img_l_rect = cv.warpPerspective(img_l, Rl, (w1, h1))
     img_r_rect = cv.warpPerspective(img_r, Rr, (w2, h2))
@@ -330,6 +370,9 @@ def custom_rectification(img_l, img_r, fundamental, pts_l, pts_r, show=False) ->
     return Rl, Rr
 
 
+# ----------------------------
+
+
 if __name__ == '__main__':
     path_l, path_r = 'data/mouse/right.png', 'data/mouse/left.png'
     image_l, image_r = cv.imread(path_l, cv.IMREAD_COLOR), cv.imread(path_r, cv.IMREAD_COLOR)
@@ -338,8 +381,8 @@ if __name__ == '__main__':
 
     im_l, im_r = draw_epilines(image_l, image_r, F, points_l[:100], points_r[:100])
 
-    L_cv, R_cv = opencv_rectification(im_l, im_r, F, points_l, points_r)
-    L, R = custom_rectification(im_l, im_r, F, points_l, points_r)
+    L_cv, R_cv = opencv_rectification(im_l, im_r, F, points_l, points_r, True)
+    L, R = custom_rectification('khrop', im_l, im_r, F, points_l, points_r, True)
 
     print(f"Rl mse error: {np.mean((L_cv / L_cv[2, 2] - L / L[2, 2]) ** 2)},",
           f"\nRr mse error: {np.mean((R_cv / R_cv[2, 2] - R / R[2, 2]) ** 2)}")
